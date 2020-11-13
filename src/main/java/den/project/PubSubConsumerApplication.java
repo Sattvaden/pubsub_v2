@@ -1,7 +1,6 @@
 package den.project;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.stream.annotation.EnableBinding;
@@ -14,7 +13,17 @@ import org.springframework.messaging.Message;
 @SpringBootApplication
 public class PubSubConsumerApplication {
 
-    private static final Log LOGGER = LogFactory.getLog(PubSubConsumerApplication.class);
+    private MessageHandler messageHandler;
+
+//    @Autowired
+//    public PubSubConsumerApplication(MessageHandler messageHandler) {
+//        this.messageHandler = messageHandler;
+//    }
+
+    @Autowired
+    public void setMessageHandler(MessageHandler messageHandler) {
+        this.messageHandler = messageHandler;
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(PubSubConsumerApplication.class, args);
@@ -22,7 +31,7 @@ public class PubSubConsumerApplication {
 
     @StreamListener(Sink.INPUT)
     public void handleMessage(Message<String> message) {
-        LOGGER.info("Received: " + message.getPayload());
+        messageHandler.handleMessage(message);
     }
 
 }
