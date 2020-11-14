@@ -5,8 +5,8 @@ import org.springframework.messaging.MessageChannel;
 
 public interface MyChannel {
 
-    String PUBSUB = "pubsub";
+    String INPUTT = "pubsub";
 
-    @Input(PUBSUB)
-    MessageChannel input();
+    @Input(INPUTT)
+    MessageChannel pubsubadfadf();
 }
