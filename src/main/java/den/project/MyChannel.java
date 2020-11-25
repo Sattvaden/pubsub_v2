@@ -5,8 +5,9 @@ import org.springframework.messaging.MessageChannel;
 
 public interface MyChannel {
 
-    String INPUTT = "pubsub";
+    //this value define binding in application.yaml
+    String INPUT = "pubsub";
 
-    @Input(INPUTT)
+    @Input(INPUT)
     MessageChannel pubsubadfadf();
 }
