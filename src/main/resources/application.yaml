@@ -4,4 +4,4 @@ spring:
     stream:
       bindings:
         pubsub:
-          destination: cache_subscription
+          destination: mysubscription
